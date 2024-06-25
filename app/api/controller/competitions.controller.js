@@ -29,9 +29,9 @@ exports.getTournamentsDetails = async (req, res) => {
         url: "https://www.sofascore.com/api/v1/unique-tournament/" + req.params.tid + "/meta"
     };
 
-    let seasonsList = {};
+    let seasonsList = null;
     let featuredEvent = [];
-    let otherInfo = {};
+    let otherInfo = null;
 
     await axios.request(configSeasons)
         .then((response) => {
