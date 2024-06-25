@@ -38,12 +38,12 @@ exports.getMatchDetails = async (req, res) => {
         url: "https://www.sofascore.com/api/v1/event/" + req.params.id + "/best-players/summary"
     };
 
-    let homeManager = {};
-    let awayManager = {};
-    let winProbability = {};
-    let teamForm = {};
-    let featuredPlayer = {};
-    let bestPlayerSummary = {};
+    let homeManager = null;
+    let awayManager = null;
+    let winProbability = null;
+    let teamForm = null;
+    let featuredPlayer = null;
+    let bestPlayerSummary = null;
 
     await axios.request(configManagers)
         .then((response) => {
