@@ -8,9 +8,9 @@ exports.getLiveMatches = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500){
-                return res.status(204).json({status: false, message: "Something went wrong", response: []});
+                return res.status(404).json({status: false, message: "Something went wrong", response: []});
             }
-            if (!response.data) {return res.status(204).json({status: false, message: "Record not Found", response: []});}
+            if (!response.data) {return res.status(404).json({status: false, message: "Record not Found", response: []});}
 
             let results = [];
 			let resultsTid = [];
@@ -73,7 +73,7 @@ exports.getLiveMatches = (req, res) => {
             return res.status(200).json(orderedGroupedData ?? []);
         })
         .catch((error) => {
-            return res.status(204).json({status: false, message: error.message, response: []});
+            return res.status(404).json({status: false, message: error.message, response: []});
         });
 };
 function addOrUpdateStudent(rollNo, newValue) {
@@ -82,7 +82,7 @@ function addOrUpdateStudent(rollNo, newValue) {
 exports.getScheduleMatches = (req, res) => {
 
     if (req.query.date == null){
-        return res.status(204).json({status: false, message: "Params Required", response: []});
+        return res.status(404).json({status: false, message: "Params Required", response: []});
     }
 
     let config = {method: 'get', maxBodyLength: Infinity, url: 'https://www.sofascore.com/api/v1/sport/football/scheduled-events/'+req.query.date};
@@ -90,9 +90,9 @@ exports.getScheduleMatches = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500){
-                return res.status(204).json({status: false, message: "Something went wrong", response: []});
+                return res.status(404).json({status: false, message: "Something went wrong", response: []});
             }
-            if (!response.data) {return res.status(204).json({status: false, message: "Record not Found", response: []});}
+            if (!response.data) {return res.status(404).json({status: false, message: "Record not Found", response: []});}
 
                       let results = [];
 			let resultsTid = [];
@@ -155,6 +155,6 @@ exports.getScheduleMatches = (req, res) => {
             return res.status(200).json(orderedGroupedData ?? []);
         })
         .catch((error) => {
-            return res.status(204).json({status: false, message: error.message, response: []});
+            return res.status(404).json({status: false, message: error.message, response: []});
         });
 };
