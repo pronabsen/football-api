@@ -141,7 +141,7 @@ exports.getMatches = (req, res) => {
             for (let i = 0; i < response.data.rounds.length; i++) {
 
                 let round = response.data.rounds[i];
-                let res = {};
+                let res = null;
 
                 let url = "";
 
@@ -368,7 +368,7 @@ exports.getTopPlayers = (req, res) => {
         url: "https://www.sofascore.com/api/v1/unique-tournament/" + req.params.tid + "/season/" + req.params.sid + "/top-players/overall"
     };
 
-    let result = {};
+    let result = null;
 
 
     axios.request(config)
