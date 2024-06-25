@@ -4,7 +4,7 @@ const axios = require('axios')
 exports.getMatchDetails = async (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -95,10 +95,10 @@ exports.getMatchDetails = async (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             let data = response.data.event;
@@ -142,14 +142,14 @@ exports.getMatchDetails = async (req, res) => {
             return res.status(200).json(results ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getMatchCommentary = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -160,23 +160,23 @@ exports.getMatchCommentary = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data.comments ?? []);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getMatchStatistics = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -187,23 +187,23 @@ exports.getMatchStatistics = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data.statistics[0] ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getMatchWinProbability = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -214,23 +214,23 @@ exports.getMatchWinProbability = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data.winProbability ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getMatchLineUps = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -241,23 +241,23 @@ exports.getMatchLineUps = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getMatchIncidents = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -270,10 +270,10 @@ exports.getMatchIncidents = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             if (response.data.incidents != null) {
@@ -312,14 +312,14 @@ exports.getMatchIncidents = (req, res) => {
             return res.status(200).json(incidents ?? []);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getMatchGraphs = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -330,23 +330,23 @@ exports.getMatchGraphs = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getMatchShotMap = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -357,16 +357,16 @@ exports.getMatchShotMap = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data.shotmap ?? []);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
@@ -375,7 +375,7 @@ exports.getMatchShotMap = (req, res) => {
 exports.getTeamForm = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -386,23 +386,23 @@ exports.getTeamForm = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getTeamHead2Head = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -413,23 +413,23 @@ exports.getTeamHead2Head = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getTeamsManagers = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -440,16 +440,16 @@ exports.getTeamsManagers = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
@@ -458,7 +458,7 @@ exports.getTeamsManagers = (req, res) => {
 exports.getShotMapPlayer = (req, res) => {
 
     if (req.params.id == null && req.params.player == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -469,23 +469,23 @@ exports.getShotMapPlayer = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data.shotmap ?? []);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getBestPlayersSummery = (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {
         method: 'get',
@@ -496,15 +496,15 @@ exports.getBestPlayersSummery = (req, res) => {
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
             if (!response.data) {
-                return res.status(404).json({status: false, message: "Record not Found", response: []});
+                return res.status(204).json({status: false, message: "Record not Found", response: []});
             }
 
             return res.status(200).json(response.data ?? null);
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };

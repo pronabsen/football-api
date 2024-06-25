@@ -110,7 +110,7 @@ exports.getNewsDetails = async (req, res) => {
   //  var parseString = req.parseString;
 
     if (req.query.id == null ){
-        return res.status(404).json({status: false, message: "Id field is required", response: []});
+        return res.status(204).json({status: false, message: "Id field is required", response: []});
     }
 
     const id = req.query.id;

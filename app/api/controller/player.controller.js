@@ -4,7 +4,7 @@ const axios = require("axios");
 exports.getPlayerInfo = async (req, res) => {
 
     if (req.params.id == null) {
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let about = '';
     axios.request({
@@ -25,10 +25,10 @@ exports.getPlayerInfo = async (req, res) => {
             axios.request(config)
                 .then((response) => {
                     if (response.status === 500) {
-                        return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                        return res.status(204).json({status: false, message: "Something went wrong", response: []});
                     }
                     if (!response.data) {
-                        return res.status(404).json({status: false, message: "Record not Found", response: []});
+                        return res.status(204).json({status: false, message: "Record not Found", response: []});
                     }
 
                     let data = response.data.player;
@@ -56,7 +56,7 @@ exports.getPlayerInfo = async (req, res) => {
 
                 })
                 .catch((error) => {
-                    return res.status(404).json({status: false, message: error.message, response: []});
+                    return res.status(204).json({status: false, message: error.message, response: []});
                 });
         });
 
@@ -66,60 +66,60 @@ exports.getPlayerInfo = async (req, res) => {
 exports.getPlayerNationalTeamStatistics = (req, res) => {
 
     if (req.params.id == null){
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {method: 'get', maxBodyLength: Infinity, url: "https://www.sofascore.com/api/v1/player/"+req.params.id+"/national-team-statistics"};
 
     axios.request(config)
         .then((response) => {
             if (response.status === 500){
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
-            if (!response.data) {return res.status(404).json({status: false, message: "Record not Found", response: []});}
+            if (!response.data) {return res.status(204).json({status: false, message: "Record not Found", response: []});}
 
             return res.status(200).json(response.data.statistics[0] ?? null);
 
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getAttributeOverViews = (req, res) => {
 
     if (req.params.id == null){
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {method: 'get', maxBodyLength: Infinity, url: "https://www.sofascore.com/api/v1/player/"+req.params.id+"/attribute-overviews"};
 
     axios.request(config)
         .then((response) => {
             if (response.status === 500){
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
-            if (!response.data) {return res.status(404).json({status: false, message: "Record not Found", response: []});}
+            if (!response.data) {return res.status(204).json({status: false, message: "Record not Found", response: []});}
 
             return res.status(200).json(response.data.averageAttributeOverviews[0] ?? null);
 
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getPlayerRecentMatches = (req, res) => {
 
     if (req.params.id == null){
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {method: 'get', maxBodyLength: Infinity, url: "https://www.sofascore.com/api/v1/player/"+req.params.id+"/events/last/0"};
 
     axios.request(config)
         .then((response) => {
             if (response.status === 500){
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
-            if (!response.data) {return res.status(404).json({status: false, message: "Record not Found", response: []});}
+            if (!response.data) {return res.status(204).json({status: false, message: "Record not Found", response: []});}
 
             let results = [];
 
@@ -167,72 +167,72 @@ exports.getPlayerRecentMatches = (req, res) => {
 
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getPlayerRecentSummary = (req, res) => {
 
     if (req.params.id == null){
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {method: 'get', maxBodyLength: Infinity, url: "https://www.sofascore.com/api/v1/player/"+req.params.id+"/last-year-summary"};
 
     axios.request(config)
         .then((response) => {
             if (response.status === 500){
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
-            if (!response.data) {return res.status(404).json({status: false, message: "Record not Found", response: []});}
+            if (!response.data) {return res.status(204).json({status: false, message: "Record not Found", response: []});}
 
             return res.status(200).json(response.data ?? null);
 
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getPlayerSeasonStatistics = (req, res) => {
 
     if (req.params.id == null){
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {method: 'get', maxBodyLength: Infinity, url: "https://www.sofascore.com/api/v1/player/"+req.params.id+"/statistics/seasons"};
 
     axios.request(config)
         .then((response) => {
             if (response.status === 500){
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
-            if (!response.data) {return res.status(404).json({status: false, message: "Record not Found", response: []});}
+            if (!response.data) {return res.status(204).json({status: false, message: "Record not Found", response: []});}
 
             return res.status(200).json(response.data.uniqueTournamentSeasons ?? null);
 
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };
 
 exports.getPlayerCharacteristics = (req, res) => {
 
     if (req.params.id == null){
-        return res.status(404).json({status: false, message: "Params Required", response: []});
+        return res.status(204).json({status: false, message: "Params Required", response: []});
     }
     let config = {method: 'get', maxBodyLength: Infinity, url: "https://www.sofascore.com/api/v1/player/"+req.params.id+"/characteristics"};
 
     axios.request(config)
         .then((response) => {
             if (response.status === 500){
-                return res.status(404).json({status: false, message: "Something went wrong", response: []});
+                return res.status(204).json({status: false, message: "Something went wrong", response: []});
             }
-            if (!response.data) {return res.status(404).json({status: false, message: "Record not Found", response: []});}
+            if (!response.data) {return res.status(204).json({status: false, message: "Record not Found", response: []});}
 
             return res.status(200).json(response.data.uniqueTournamentSeasons ?? null);
 
         })
         .catch((error) => {
-            return res.status(404).json({status: false, message: error.message, response: []});
+            return res.status(204).json({status: false, message: error.message, response: []});
         });
 };

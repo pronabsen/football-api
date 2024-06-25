@@ -40,14 +40,14 @@ app.use(function(req, res, next)  {
 
 
 app.get("/", (req, res) => {
-    res.status(404).json({
+    res.status(204).json({
         success:1,
         message: "success"
     })
 });
 
 app.get("/api", (req, res) => {
-    res.status(404).json({
+    res.status(204).json({
         success:1,
         message: "success"
     })
