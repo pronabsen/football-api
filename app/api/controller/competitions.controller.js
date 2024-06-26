@@ -141,7 +141,7 @@ exports.getMatches = (req, res) => {
             for (let i = 0; i < response.data.rounds.length; i++) {
 
                 let round = response.data.rounds[i];
-                let res = null;
+               // let res = null;
 
                 let url = "";
 
@@ -205,7 +205,9 @@ exports.getMatches = (req, res) => {
 
                         }).catch((e) => {});
 
-                    results.push(res);
+                    if(res !== null){
+                        results.push(res);
+                    }
 
                 }
 
