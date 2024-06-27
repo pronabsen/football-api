@@ -1,5 +1,5 @@
 const {getPlayerInfo, getPlayerNationalTeamStatistics, getAttributeOverViews, getPlayerRecentMatches,
-    getPlayerRecentSummary, getPlayerSeasonStatistics, getPlayerCharacteristics
+    getPlayerRecentSummary, getPlayerSeasonStatistics, getPlayerCharacteristics, getPlayerSeasonStatisticsDetails
 } = require("../controller/player.controller");
 
 const router = require("express").Router();
@@ -10,7 +10,9 @@ router.get("/attribute/:id", getAttributeOverViews);
 router.get("/recent/matches/:id", getPlayerRecentMatches);
 router.get("/recent/summary/:id", getPlayerRecentSummary);
 router.get("/season/statistics/:id", getPlayerSeasonStatistics);
-router.get("/characteristics/:id", getPlayerCharacteristics);
+router.get("/:id/tournament/:tid/season/:sid/statistics", getPlayerSeasonStatisticsDetails);
+
+//router.get("/characteristics/:id", getPlayerCharacteristics);
 
 
 module.exports = router;
