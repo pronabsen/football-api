@@ -7,12 +7,35 @@ exports.getPlayerInfo = async (req, res) => {
         return res.status(404).json({status: false, message: "Params Required", response: []});
     }
     let about = '';
+    let nationalTeam = [];
+    let transferHistory = [];
+
+    let configNational = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: "https://www.sofascore.com/api/v1/player/" + req.params.id + "/national-team-statistics"
+    };
+    let configTransfer = {
+        method: 'get',
+        maxBodyLength: Infinity,
+        url: "https://www.sofascore.com/api/v1/player/" + req.params.id + "/national-team-statistics"
+    };
+    await axios.request(configNational)
+        .then((response) => {
+            transferHistory = response.data.transferHistory ?? [];
+        }).catch((e) => {});
+
+    await axios.request(configTransfer)
+        .then((response) => {
+            nationalTeam = response.data.statistics ?? [];
+        }).catch((e) => {});
+
     axios.request({
         method: 'get',
         maxBodyLength: Infinity,
         url: "https://www.sofascore.com/api/v1/seo/content/player/" + req.params.id + "/en"
-    })
-        .then((response) => {
+    }).then((response) => {
+
             if (response.status === 200) {
                 about = response.data.content.about.replaceAll("Sofascore", "FootLive");
             }
@@ -50,6 +73,8 @@ exports.getPlayerInfo = async (req, res) => {
                         proposedMarketValue: data.proposedMarketValue,
                         team: data.team,
                         about: about,
+                        nationalTeam: nationalTeam,
+                        transferHistory: transferHistory,
                     };
 
                     return res.status(200).json(results ?? null);

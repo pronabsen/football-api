@@ -1,4 +1,5 @@
-const {getPlayerInfo, getPlayerNationalTeamStatistics, getAttributeOverViews, getPlayerRecentMatches,
+const {
+    getPlayerInfo, getPlayerNationalTeamStatistics, getAttributeOverViews, getPlayerRecentMatches,
     getPlayerRecentSummary, getPlayerSeasonStatistics, getPlayerCharacteristics, getPlayerSeasonStatisticsDetails
 } = require("../controller/player.controller");
 
