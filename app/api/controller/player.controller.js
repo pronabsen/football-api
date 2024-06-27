@@ -253,7 +253,7 @@ exports.getPlayerSeasonStatisticsDetails = (req, res) => {
     let config = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: "https://www.sofascore.com/api/v1/player/" + req.params.tid + "/unique-tournament/" + req.params.tid + "/season/" + req.params.sid + "/statistics/overall"
+        url: "https://www.sofascore.com/api/v1/player/" + req.params.id + "/unique-tournament/" + req.params.tid + "/season/" + req.params.sid + "/statistics/overall"
     };
 
     axios.request(config)
