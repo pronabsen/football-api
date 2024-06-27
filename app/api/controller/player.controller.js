@@ -256,6 +256,8 @@ exports.getPlayerSeasonStatisticsDetails = (req, res) => {
         url: "https://www.sofascore.com/api/v1/player/" + req.params.id + "/unique-tournament/" + req.params.tid + "/season/" + req.params.sid + "/statistics/overall"
     };
 
+
+
     axios.request(config)
         .then((response) => {
             if (response.status === 500) {
@@ -265,7 +267,69 @@ exports.getPlayerSeasonStatisticsDetails = (req, res) => {
                 return res.status(404).json({status: false, message: "Record not Found", response: []});
             }
 
-            return res.status(200).json(response.data ?? null);
+            let results = {};
+
+            let statistics = response.data.statistics;
+
+            results["statistics"] = {
+                //Goals
+                appearances : statistics.appearances ?? 0,
+                matchesStarted : statistics.matchesStarted ?? 0,
+                minutesPlayed : statistics.minutesPlayed ?? 0,
+
+                //Attack
+                goals : statistics.goals ?? 0,
+                penaltyGoals : statistics.penaltyGoals ?? 0,
+                scoringFrequency : parseFloat(statistics.scoringFrequency ?? 0).toFixed(2),
+                totalShots : statistics.totalShots ?? 0,
+                shotsOnTarget : statistics.shotsOnTarget ?? 0,
+                shotsOffTarget : statistics.shotsOffTarget ?? 0,
+                freeKickGoal : statistics.freeKickGoal ?? 0,
+                headedGoals : statistics.headedGoals ?? 0,
+                leftFootGoals : statistics.leftFootGoals ?? 0,
+                rightFootGoals : statistics.rightFootGoals ?? 0,
+                goalsFromInsideTheBox : statistics.goalsFromInsideTheBox ?? 0,
+                goalsFromOutsideTheBox : statistics.goalsFromOutsideTheBox ?? 0,
+                penaltyWon : statistics.penaltyWon ?? 0,
+                penaltiesTaken : statistics.penaltiesTaken ?? 0,
+
+                //Passing
+                assists : statistics.assists ?? 0,
+                touches : statistics.touches ?? 0,
+                bigChancesCreated : statistics.bigChancesCreated ?? 0,
+                totalPasses : statistics.totalPasses ?? 0,
+                keyPasses : statistics.keyPasses ?? 0,
+                accuratePasses : statistics.accuratePasses ?? 0,
+
+                //Defending
+                interceptions : statistics.interceptions ?? 0,
+                tackles : statistics.tackles ?? 0,
+                possessionWonAttThird : statistics.possessionWonAttThird ?? 0,
+                dribbledPast : statistics.dribbledPast ?? 0,
+                clearances : statistics.clearances ?? 0,
+
+                //Other
+                successfulDribbles : statistics.successfulDribbles ?? 0,
+                totalDuelsWon : statistics.totalDuelsWon ?? 0,
+                groundDuelsWon : statistics.groundDuelsWon ?? 0,
+                aerialDuelsWon : statistics.aerialDuelsWon ?? 0,
+                possessionLost : statistics.possessionLost ?? 0,
+                fouls : statistics.fouls ?? 0,
+                wasFouled : statistics.wasFouled ?? 0,
+                offsides : statistics.offsides ?? 0,
+
+                //Cards
+                yellowCards : statistics.yellowCards ?? 0,
+                redCards : statistics.redCards ?? 0,
+                yellowRedCards : statistics.yellowRedCards ?? 0,
+
+                rating : parseFloat(statistics.rating ?? 0).toFixed(2),
+                totalRating : parseFloat(statistics.totalRating ?? 0).toFixed(2),
+            }
+
+            results["team"] = response.data.team;
+
+            return res.status(200).json(results ?? null);
 
         })
         .catch((error) => {
