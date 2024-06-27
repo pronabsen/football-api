@@ -14,7 +14,7 @@ exports.getPlayerInfo = async (req, res) => {
     })
         .then((response) => {
             if (response.status === 200) {
-                about = response.data.content.about;
+                about = response.data.content.about.replaceAll("Sofascore", "FootLive");
             }
             let config = {
                 method: 'get',
