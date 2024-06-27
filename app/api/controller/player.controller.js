@@ -18,14 +18,14 @@ exports.getPlayerInfo = async (req, res) => {
     let configTransfer = {
         method: 'get',
         maxBodyLength: Infinity,
-        url: "https://www.sofascore.com/api/v1/player/" + req.params.id + "/national-team-statistics"
+        url: "https://www.sofascore.com/api/v1/player/" + req.params.id + "/transfer-history"
     };
-    await axios.request(configNational)
+    await axios.request(configTransfer)
         .then((response) => {
             transferHistory = response.data.transferHistory ?? [];
         }).catch((e) => {});
 
-    await axios.request(configTransfer)
+    await axios.request(configNational)
         .then((response) => {
             nationalTeam = response.data.statistics ?? [];
         }).catch((e) => {});
